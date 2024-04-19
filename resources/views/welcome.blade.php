@@ -482,7 +482,7 @@
         }
 
         .items-center {
-            align-items: center
+            align-items: center;
         }
 
         .items-stretch {
@@ -844,6 +844,21 @@
                 background-color: rgb(24 24 27 / var(--tw-bg-opacity))
             }
 
+            .dark\:bg-green-900 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(36, 126, 74);
+            }
+
+            .dark\:bg-blue-900 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(52, 152, 219);
+            }
+
+            .dark\:bg-orange-900 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(230, 126, 34);
+            }
+
             .dark\:via-zinc-900 {
                 --tw-gradient-to: rgb(24 24 27 / 0) var(--tw-gradient-to-position);
                 --tw-gradient-stops: var(--tw-gradient-from), #18181b var(--tw-gradient-via-position), var(--tw-gradient-to)
@@ -919,59 +934,59 @@
                         </svg>
                     </div>
                     @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-start">
+                        <nav class="flex lg:justify-center lg:col-start-2 py-2">
                             @guest
                                 <a href="{{ route('login') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                    class="dark:bg-zinc-900  rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                                     Login
                                 </a>
                             @endguest
+
+                            @auth
+                                <a href="{{ route('logout') }}"
+                                    class="dark:bg-orange-900 rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                    Logout
+                                </a>
+                            @endauth
                         </nav>
                     @endif
                 </header>
 
                 @auth
                     <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                            <div id="docs-card"
-                                class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-                                <div class="relative flex items-center gap-6 lg:items-end">
-                                    You have admin role
+                        <div class="grid gap-12">
+                            @role('admin')
+                                <div
+                                    class="flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+                                    <div class="relative items-center gap-6 lg:items-end text-center">
+                                        You have admin role
+                                    </div>
                                 </div>
-                            </div>
+                            @endrole
 
                             @can('write')
                                 <div
-                                    class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-
-                                    <div class="pt-3 sm:pt-5">
-                                        <p class="mt-4 text-sm/relaxed">
-                                            You have write permission
-                                        </p>
+                                    class="rounded-lg p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-green-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+                                    <div class="relative items-center gap-6 lg:items-end text-center">
+                                        You have write permission
                                     </div>
                                 </div>
                             @endcan
 
                             @can('edit')
                                 <div
-                                    class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-
-                                    <div class="pt-3 sm:pt-5">
-                                        <p class="mt-4 text-sm/relaxed">
-                                            You have edit permission
-                                        </p>
+                                    class="rounded-lg p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-blue-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+                                    <div class="relative items-center gap-6 lg:items-end text-center">
+                                        You have edit permission
                                     </div>
                                 </div>
                             @endcan
 
                             @can('read')
                                 <div
-                                    class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-
-                                    <div class="pt-3 sm:pt-5">
-                                        <p class="mt-4 text-sm/relaxed">
-                                            You have read permission
-                                        </p>
+                                    class="rounded-lg p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-orange-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+                                    <div class="relative items-center gap-6 lg:items-end text-center">
+                                        You have read permission
                                     </div>
                                 </div>
                             @endcan
